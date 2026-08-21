@@ -2,26 +2,22 @@
 
 import { motion } from "framer-motion";
 import { resumeData } from "@/data/resumeData";
-import { BadgeCheck, ArrowUpRight } from "lucide-react";
 
 export default function Certifications() {
   return (
-    <section id="certifications" className="py-32 w-full relative z-10 bg-ivory">
+    <section id="certifications" className="py-32 w-full relative z-10 overflow-hidden">
       <div className="container mx-auto px-6 max-w-6xl">
         
-        <div className="flex flex-col lg:flex-row justify-between items-end mb-24 gap-8">
+        <div className="mb-24 flex flex-col md:flex-row justify-between items-end gap-8 border-b border-stone-200 pb-8">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
           >
-            <h2 className="text-xs font-semibold tracking-[0.2em] uppercase text-orchid mb-4">
-              Credentials
+            <h2 className="text-[40px] md:text-[56px] font-heading font-medium leading-[1] text-stone-900 tracking-tight">
+              Verified <span className="text-stone-400 italic font-light">Credentials.</span>
             </h2>
-            <h3 className="text-[40px] md:text-[56px] font-heading font-medium leading-[1.1] text-slate-900 tracking-tight">
-              Certifications
-            </h3>
           </motion.div>
         </div>
 
@@ -33,28 +29,36 @@ export default function Certifications() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-100px" }}
               transition={{ duration: 0.8, delay: idx * 0.1, ease: [0.16, 1, 0.3, 1] }}
-              className="group editorial-card p-10 md:p-12 relative overflow-hidden flex flex-col justify-between min-h-[300px] cursor-pointer"
+              className="group relative h-[350px] rounded-[2rem] overflow-hidden bg-white border border-stone-200 p-10 flex flex-col justify-between cursor-pointer"
             >
-              {/* Animated Ribbon */}
-              <div className="absolute top-0 right-0 w-32 h-32 bg-orchid/5 rounded-bl-full group-hover:scale-150 transition-transform duration-700 ease-out pointer-events-none" />
+              {/* Animated Hover Light */}
+              <div className="absolute inset-0 bg-gradient-to-br from-white via-white/50 to-stone-100 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" />
+              <div className="absolute -top-32 -right-32 w-64 h-64 bg-stone-100 rounded-full blur-[50px] group-hover:bg-rose-quartz/40 transition-colors duration-700 pointer-events-none" />
               
               <div className="relative z-10">
-                <div className="flex items-center gap-3 mb-8">
-                  <BadgeCheck size={28} className="text-orchid" strokeWidth={1.5} />
-                  <span className="text-sm font-semibold tracking-[0.1em] uppercase text-slate-400">Verified Credential</span>
+                <div className="flex items-center gap-4 mb-8">
+                  {/* Luxury Seal */}
+                  <div className="w-12 h-12 rounded-full border border-stone-900 flex items-center justify-center">
+                    <div className="w-8 h-8 rounded-full bg-stone-900 flex items-center justify-center">
+                      <div className="w-2 h-2 rounded-full bg-white" />
+                    </div>
+                  </div>
+                  <span className="text-xs font-sans font-bold tracking-[0.2em] uppercase text-stone-500">Official Certification</span>
                 </div>
                 
-                <h4 className="text-2xl md:text-3xl font-heading font-medium text-slate-900 leading-snug max-w-sm group-hover:text-orchid transition-colors duration-300">
+                <h4 className="text-2xl md:text-3xl font-heading font-medium text-stone-900 leading-snug group-hover:text-stone-700 transition-colors duration-500">
                   {cert.title}
                 </h4>
               </div>
               
-              <div className="relative z-10 flex items-center justify-between mt-12 pt-6 border-t border-slate-100">
-                <span className="text-sm font-medium font-sans text-slate-500 uppercase tracking-widest">
+              <div className="relative z-10 flex items-center justify-between">
+                <span className="text-sm font-sans font-bold text-stone-400 uppercase tracking-widest">
                   {cert.date}
                 </span>
-                <div className="w-10 h-10 rounded-full border border-slate-200 flex items-center justify-center text-slate-400 group-hover:bg-orchid group-hover:border-orchid group-hover:text-white group-hover:rotate-45 transition-all duration-500">
-                  <ArrowUpRight size={18} />
+                <div className="overflow-hidden h-6 flex items-center">
+                  <span className="text-sm font-sans font-medium text-stone-900 uppercase tracking-widest translate-y-6 group-hover:translate-y-0 transition-transform duration-500">
+                    View Credential
+                  </span>
                 </div>
               </div>
             </motion.div>

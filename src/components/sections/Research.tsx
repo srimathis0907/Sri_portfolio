@@ -2,120 +2,126 @@
 
 import { motion } from "framer-motion";
 import { resumeData } from "@/data/resumeData";
-import { FileText, ChevronRight } from "lucide-react";
 
 export default function Research() {
   const research = resumeData.research;
 
   return (
-    <section id="research" className="py-32 w-full relative z-10 bg-champagne">
+    <section id="research" className="py-32 md:py-48 w-full relative z-10 bg-white">
       <div className="container mx-auto px-6 max-w-5xl">
         
-        <div className="flex flex-col items-center text-center mb-20">
+        {/* Editorial Paper Header */}
+        <div className="flex flex-col items-center text-center mb-32 border-b border-stone-200 pb-16">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
           >
-            <div className="inline-flex items-center gap-2 px-4 py-2 bg-orchid/10 text-orchid rounded-full text-xs font-semibold tracking-[0.15em] uppercase mb-8">
-              <FileText size={14} />
-              Published Research
+            <div className="inline-flex items-center justify-center px-4 py-1.5 border border-stone-300 rounded-full text-[11px] font-sans font-bold tracking-[0.2em] uppercase text-stone-500 mb-10">
+              Published Academic Research
             </div>
-            <h3 className="text-[32px] md:text-[48px] font-heading font-medium leading-[1.1] text-slate-900 tracking-tight max-w-3xl">
+            <h3 className="text-[40px] md:text-[56px] font-heading font-medium leading-[1.1] text-stone-900 tracking-tight max-w-4xl mx-auto mb-8">
               {research.title}
             </h3>
-            <p className="mt-6 text-slate-500 font-sans text-lg uppercase tracking-widest">
+            <p className="text-stone-500 font-sans text-lg uppercase tracking-widest font-medium">
               {research.event}
             </p>
           </motion.div>
         </div>
 
         {/* Paper Layout */}
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
-          className="bg-white border border-slate-200 p-10 md:p-20 shadow-[0_30px_60px_rgba(0,0,0,0.03)] relative max-w-4xl mx-auto"
-        >
-          {/* Subtle paper fold effect */}
-          <div className="absolute top-0 right-0 w-16 h-16 bg-gradient-to-bl from-transparent via-slate-100 to-slate-200 border-b border-l border-slate-200 shadow-sm" />
+        <div className="grid lg:grid-cols-12 gap-16 lg:gap-24">
           
-          <div className="grid md:grid-cols-2 gap-16">
-            
-            <div className="flex flex-col gap-12">
-              <div>
-                <h4 className="text-sm font-semibold tracking-[0.1em] uppercase text-slate-400 mb-4 flex items-center gap-2">
-                  <ChevronRight size={16} className="text-orchid" />
-                  Abstract & Methodology
-                </h4>
-                <p className="text-slate-600 font-sans leading-relaxed text-lg font-light text-justify">
-                  {research.description}
-                </p>
-              </div>
+          {/* Left Column: Abstract & Methodology */}
+          <div className="lg:col-span-7 flex flex-col gap-16">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+            >
+              <h4 className="text-xl font-heading font-medium text-stone-900 mb-6 border-l-2 border-stone-900 pl-4">
+                01 &nbsp; Abstract & Methodology
+              </h4>
+              <p className="text-stone-600 font-sans leading-[1.8] text-[19px] font-light text-justify">
+                {research.description}
+              </p>
+            </motion.div>
 
-              <div>
-                <h4 className="text-sm font-semibold tracking-[0.1em] uppercase text-slate-400 mb-4 flex items-center gap-2">
-                  <ChevronRight size={16} className="text-orchid" />
-                  Key Findings
-                </h4>
-                <p className="text-slate-600 font-sans leading-relaxed text-lg font-light text-justify">
-                  {research.results}
-                </p>
-              </div>
-            </div>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, delay: 0.3 }}
+            >
+              <h4 className="text-xl font-heading font-medium text-stone-900 mb-6 border-l-2 border-stone-900 pl-4">
+                02 &nbsp; Key Findings
+              </h4>
+              <p className="text-stone-600 font-sans leading-[1.8] text-[19px] font-light text-justify">
+                {research.results}
+              </p>
+            </motion.div>
+          </div>
 
-            {/* Model Comparison Graph */}
-            <div className="bg-slate-50 border border-slate-100 p-8 flex flex-col justify-center">
-              <h4 className="text-sm font-semibold tracking-[0.1em] uppercase text-slate-900 mb-8 text-center">
-                Model Accuracy Comparison
+          {/* Right Column: Data Visualization */}
+          <div className="lg:col-span-5">
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 1, delay: 0.4 }}
+              className="bg-stone-50 border border-stone-200 rounded-[2rem] p-10 flex flex-col sticky top-40"
+            >
+              <h4 className="text-xs font-sans font-bold tracking-[0.2em] uppercase text-stone-400 mb-12 text-center">
+                Model Efficacy Comparison
               </h4>
               
-              <div className="flex flex-col gap-10">
-                {/* RNN Stat */}
+              <div className="flex flex-col gap-12">
+                {/* Proposed RNN */}
                 <div>
-                  <div className="flex justify-between items-end mb-3">
-                    <span className="text-slate-700 font-medium font-sans">RNN (Proposed)</span>
-                    <span className="text-orchid font-heading font-medium text-3xl">{research.stats.rnn}</span>
+                  <div className="flex justify-between items-end mb-4">
+                    <span className="text-stone-900 font-heading font-medium text-lg">Proposed RNN</span>
+                    <span className="text-stone-900 font-heading font-medium text-4xl leading-none">{research.stats.rnn}</span>
                   </div>
-                  <div className="w-full h-2 bg-slate-200 overflow-hidden">
+                  <div className="w-full h-3 bg-stone-200 rounded-full overflow-hidden">
                     <motion.div 
                       initial={{ width: 0 }}
                       whileInView={{ width: "97.25%" }}
                       viewport={{ once: true }}
-                      transition={{ duration: 1.5, delay: 0.5, ease: "easeOut" }}
-                      className="h-full bg-orchid"
+                      transition={{ duration: 2, delay: 0.6, ease: [0.16, 1, 0.3, 1] }}
+                      className="h-full bg-stone-900"
                     />
                   </div>
                 </div>
 
-                {/* SVM Stat */}
+                {/* Baseline SVM */}
                 <div>
-                  <div className="flex justify-between items-end mb-3">
-                    <span className="text-slate-500 font-medium font-sans text-sm">SVM (Baseline)</span>
-                    <span className="text-slate-600 font-heading font-medium text-xl">{research.stats.svm}</span>
+                  <div className="flex justify-between items-end mb-4">
+                    <span className="text-stone-500 font-heading font-medium">Baseline SVM</span>
+                    <span className="text-stone-500 font-heading font-medium text-2xl leading-none">{research.stats.svm}</span>
                   </div>
-                  <div className="w-full h-1 bg-slate-200 overflow-hidden">
+                  <div className="w-full h-2 bg-stone-200 rounded-full overflow-hidden">
                     <motion.div 
                       initial={{ width: 0 }}
                       whileInView={{ width: "84.57%" }}
                       viewport={{ once: true }}
-                      transition={{ duration: 1.5, delay: 0.5, ease: "easeOut" }}
-                      className="h-full bg-slate-400"
+                      transition={{ duration: 2, delay: 0.6, ease: [0.16, 1, 0.3, 1] }}
+                      className="h-full bg-stone-400"
                     />
                   </div>
                 </div>
               </div>
               
-              <div className="mt-12 pt-6 border-t border-slate-200 text-center">
-                <span className="text-xs font-medium text-slate-400 uppercase tracking-widest">
-                  Significant Improvement Validated
-                </span>
+              <div className="mt-16 pt-8 border-t border-stone-200 text-center">
+                <p className="text-sm font-sans font-medium text-stone-500 leading-relaxed">
+                  The recurrent neural network approach yielded a statistically significant improvement in detecting cognitive distortion patterns over traditional support vector machines.
+                </p>
               </div>
-            </div>
+            </motion.div>
           </div>
-        </motion.div>
+
+        </div>
       </div>
     </section>
   );
