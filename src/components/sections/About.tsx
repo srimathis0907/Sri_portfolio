@@ -2,92 +2,104 @@
 
 import { motion } from "framer-motion";
 
+const FEATURES = [
+  {
+    title: "Problem Solving",
+    desc: "Translating ambiguous requirements into strictly typed, scalable logic.",
+    icon: (
+      <svg className="w-6 h-6 text-slate-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+      </svg>
+    )
+  },
+  {
+    title: "Android Engineering",
+    desc: "Building fluid, native mobile experiences with Kotlin and clean architecture.",
+    icon: (
+      <svg className="w-6 h-6 text-slate-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z" />
+      </svg>
+    )
+  },
+  {
+    title: "Backend Systems",
+    desc: "Designing secure, high-throughput REST APIs using Java and Node.js.",
+    icon: (
+      <svg className="w-6 h-6 text-slate-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M5 12h14M5 12a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v4a2 2 0 01-2 2M5 12a2 2 0 00-2 2v4a2 2 0 002 2h14a2 2 0 002-2v-4a2 2 0 00-2-2m-2-4h.01M17 16h.01" />
+      </svg>
+    )
+  },
+  {
+    title: "Continuous Learning",
+    desc: "Constantly expanding into cloud architecture and advanced analytics.",
+    icon: (
+      <svg className="w-6 h-6 text-slate-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M13 10V3L4 14h7v7l9-11h-7z" />
+      </svg>
+    )
+  }
+];
+
 export default function About() {
   return (
-    <section id="about" className="py-32 md:py-48 w-full relative bg-[#F4F1EA]">
+    <section id="about" className="py-24 md:py-32 w-full bg-[#FCFCFA] relative overflow-hidden">
       <div className="container mx-auto px-6 max-w-7xl">
         
-        <div className="flex flex-col lg:flex-row gap-20 lg:gap-32">
-          
-          {/* Left: The Massive Pull Quote & Philosophy */}
-          <div className="w-full lg:w-1/2 flex flex-col justify-center border-l-2 border-stone-800 pl-8 lg:pl-16">
-            <motion.div
-              initial={{ opacity: 0, x: -30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true, margin: "-100px" }}
-              transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
-            >
-              <h2 className="text-[40px] md:text-[64px] font-heading font-light leading-[1.1] text-stone-900 tracking-tight mb-12">
-                &quot;Engineering is not writing code. It is structural logic applied to human problems.&quot;
-              </h2>
-              
-              <div className="flex items-center gap-6 text-stone-500 font-sans text-sm tracking-[0.2em] uppercase font-bold">
-                <span className="w-12 h-[1px] bg-stone-400" />
-                Srimathi S
-              </div>
-            </motion.div>
-          </div>
-
-          {/* Right: Visual Career Map / Highlight Chips (Minimal Text) */}
-          <div className="w-full lg:w-1/2 flex flex-col gap-16 justify-center">
-            
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8 }}
-            >
-              <h3 className="text-xl font-heading font-medium text-stone-900 mb-6">01 &mdash; The Foundation</h3>
-              <p className="text-stone-600 font-sans text-lg font-light leading-relaxed mb-8 max-w-md">
-                Bridging robust native Android architecture with advanced data analytics. I prioritize performance, scalability, and extreme minimalism in logic.
-              </p>
-              
-              {/* Visual Highlight Chips */}
-              <div className="flex flex-wrap gap-3">
-                {['Architecture', 'Data Science', 'Scalability', 'UI/UX'].map((chip, i) => (
-                  <span key={i} className="px-5 py-2 border border-stone-300 rounded-full text-xs font-sans font-bold uppercase tracking-widest text-stone-800 hover:bg-stone-900 hover:text-white transition-colors duration-500 cursor-default">
-                    {chip}
-                  </span>
-                ))}
-              </div>
-            </motion.div>
-
-            <div className="w-full h-[1px] bg-stone-300" />
-
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-            >
-              <h3 className="text-xl font-heading font-medium text-stone-900 mb-6">02 &mdash; The Execution</h3>
-              
-              {/* Minimal SVG Data Workflow */}
-              <div className="flex items-center gap-4 text-stone-400 mb-8 overflow-x-auto pb-4">
-                <div className="flex flex-col items-center gap-3">
-                  <div className="w-12 h-12 rounded-full border border-stone-300 flex items-center justify-center font-heading text-stone-800">1</div>
-                  <span className="text-[10px] font-sans font-bold uppercase tracking-widest">Analyze</span>
-                </div>
-                <div className="w-8 h-[1px] bg-stone-300" />
-                <div className="flex flex-col items-center gap-3">
-                  <div className="w-12 h-12 rounded-full border border-stone-300 flex items-center justify-center font-heading text-stone-800">2</div>
-                  <span className="text-[10px] font-sans font-bold uppercase tracking-widest">Architect</span>
-                </div>
-                <div className="w-8 h-[1px] bg-stone-300" />
-                <div className="flex flex-col items-center gap-3">
-                  <div className="w-12 h-12 rounded-full border border-stone-900 bg-stone-900 text-white flex items-center justify-center font-heading">3</div>
-                  <span className="text-[10px] font-sans font-bold uppercase tracking-widest text-stone-900">Execute</span>
-                </div>
-              </div>
-              
-              <p className="text-stone-600 font-sans text-lg font-light leading-relaxed max-w-md">
-                Iterative development driven by real-world data constraints. 
-              </p>
-            </motion.div>
-
-          </div>
-          
+        <div className="text-center mb-16 md:mb-24">
+          <motion.h2 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+            className="text-3xl md:text-5xl font-heading font-extrabold text-[#0F172A] tracking-tight mb-4"
+          >
+            Engineering Focus.
+          </motion.h2>
+          <motion.p 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, delay: 0.1 }}
+            className="text-[#475569] font-sans text-lg max-w-2xl mx-auto"
+          >
+            Core competencies driving the development of premium software products.
+          </motion.p>
         </div>
+
+        <div className="grid md:grid-cols-2 gap-6 lg:gap-8">
+          {FEATURES.map((feature, idx) => (
+            <motion.div
+              key={idx}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: idx * 0.1 }}
+              className="group relative rounded-2xl bg-white border border-[rgba(15,23,42,0.06)] p-8 shadow-sm hover:shadow-xl transition-all duration-500 overflow-hidden"
+            >
+              {/* Glass / Gradient Hover Mask */}
+              <div className="absolute inset-0 bg-gradient-to-br from-slate-50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
+              
+              {/* Animated Border Glow */}
+              <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none">
+                 <div className="absolute inset-[-1px] rounded-2xl bg-gradient-to-r from-slate-200 via-slate-400 to-slate-200 mask-image-linear-gradient" style={{ WebkitMaskImage: 'linear-gradient(white, white)', WebkitMaskComposite: 'xor', maskComposite: 'exclude', padding: '1px' }} />
+              </div>
+
+              <div className="relative z-10">
+                <div className="w-12 h-12 rounded-xl bg-slate-50 border border-slate-100 flex items-center justify-center mb-6 group-hover:scale-110 group-hover:bg-slate-100 transition-all duration-500">
+                  {feature.icon}
+                </div>
+                <h3 className="text-xl font-heading font-bold text-[#0F172A] mb-3">
+                  {feature.title}
+                </h3>
+                <p className="text-[#475569] font-sans leading-relaxed">
+                  {feature.desc}
+                </p>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+        
       </div>
     </section>
   );

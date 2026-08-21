@@ -13,37 +13,36 @@ export default function Contact() {
   ];
 
   return (
-    <section id="contact" className="py-32 md:py-48 w-full relative overflow-hidden bg-[#F4F1EA]">
+    <section id="contact" className="py-32 md:py-48 w-full bg-[#0F172A] relative overflow-hidden text-white flex flex-col justify-center">
       
-      {/* Editorial Organic Shadows */}
-      <div className="absolute inset-0 pointer-events-none -z-10 overflow-hidden mix-blend-multiply opacity-40">
-        <motion.div 
-          animate={{ x: [-50, 50, -50], y: [-20, 20, -20] }}
-          transition={{ duration: 20, repeat: Infinity, ease: "easeInOut" }}
-          className="absolute top-0 right-0 w-[800px] h-[800px] bg-gradient-to-bl from-[#D9D2C5] via-transparent to-transparent rounded-full blur-[100px]"
-        />
+      {/* Animated SVG Shapes (Pure Code) */}
+      <div className="absolute inset-0 pointer-events-none overflow-hidden flex items-center justify-center opacity-20">
+         <motion.svg viewBox="0 0 400 400" className="w-[800px] h-[800px] absolute" animate={{ rotate: 360 }} transition={{ duration: 100, repeat: Infinity, ease: "linear" }}>
+            <circle cx="200" cy="200" r="180" fill="none" stroke="#2563EB" strokeWidth="1" strokeDasharray="4 12" />
+            <circle cx="200" cy="200" r="120" fill="none" stroke="#2563EB" strokeWidth="1" opacity="0.5" />
+            <rect x="140" y="140" width="120" height="120" fill="none" stroke="#2563EB" strokeWidth="1" transform="rotate(45 200 200)" />
+         </motion.svg>
       </div>
 
-      <div className="container mx-auto px-6 max-w-7xl flex flex-col items-center justify-center text-center">
+      <div className="container mx-auto px-6 max-w-5xl relative z-10 text-center">
         
         <motion.div
-          initial={{ opacity: 0, y: 50 }}
+          initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1] }}
-          className="w-full"
+          transition={{ duration: 0.8 }}
         >
-          <h2 className="text-[18vw] font-heading font-medium text-stone-900 leading-[0.75] tracking-[-0.05em] mb-12 hover:scale-105 transition-transform duration-1000 cursor-default">
-            Connect.
+          <h2 className="text-[50px] md:text-[80px] lg:text-[120px] font-heading font-black tracking-[-0.04em] leading-[0.9] text-white mb-8">
+            Let&apos;s Build <br /> Something.
           </h2>
         </motion.div>
 
         <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 1, delay: 0.5 }}
-          className="flex flex-col sm:flex-row flex-wrap justify-center gap-16 md:gap-24 mt-20"
+          transition={{ duration: 0.8, delay: 0.2 }}
+          className="flex flex-wrap justify-center gap-6 mt-16"
         >
           {links.map((link, idx) => (
             <a
@@ -51,14 +50,11 @@ export default function Contact() {
               href={link.url}
               target="_blank"
               rel="noopener noreferrer"
-              className="group relative overflow-hidden"
+              className="group relative px-8 py-4 bg-white/5 border border-white/10 rounded-full hover:bg-white hover:text-[#0F172A] transition-all duration-500 overflow-hidden flex items-center justify-center"
             >
-              <div className="flex flex-col items-center gap-2">
-                <span className="text-sm font-sans font-bold tracking-[0.2em] uppercase text-stone-500 group-hover:text-stone-900 transition-colors duration-500">
-                  {link.name}
-                </span>
-                <div className="h-[1px] w-0 bg-stone-900 group-hover:w-full transition-all duration-500 ease-out" />
-              </div>
+              <span className="relative z-10 font-sans font-bold text-sm tracking-widest uppercase transition-colors duration-500">
+                {link.name}
+              </span>
             </a>
           ))}
         </motion.div>

@@ -1,165 +1,109 @@
 "use client";
 
 import { motion } from "framer-motion";
-import Image from "next/image";
 import { resumeData } from "@/data/resumeData";
 
 export default function Research() {
   const research = resumeData.research;
 
   return (
-    <section id="research" className="py-32 md:py-48 w-full relative z-10 bg-white">
+    <section id="research" className="py-24 md:py-32 w-full bg-[#FAFAF8] relative overflow-hidden border-y border-[rgba(15,23,42,0.06)]">
       <div className="container mx-auto px-6 max-w-7xl">
         
-        {/* Editorial Paper Header */}
-        <div className="flex flex-col items-center text-center mb-24 border-b border-stone-200 pb-20">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
-          >
-            <div className="inline-flex items-center justify-center mb-12">
-               {/* Elegant Published Badge */}
-               <div className="px-6 py-2 border border-stone-200 bg-stone-50 rounded-full flex items-center gap-3">
-                  <span className="w-2 h-2 rounded-full bg-stone-900 animate-pulse" />
-                  <span className="text-[11px] font-sans font-bold tracking-[0.2em] uppercase text-stone-900">Published Research Paper</span>
-               </div>
-            </div>
-            
-            <h3 className="text-[48px] md:text-[72px] lg:text-[88px] font-heading font-medium leading-[0.95] text-stone-900 tracking-[-0.03em] max-w-5xl mx-auto mb-10">
-              {research.title}
-            </h3>
-            <p className="text-stone-500 font-sans text-xl tracking-wide font-medium">
-              Presented at {research.event}
-            </p>
-          </motion.div>
-        </div>
-
-        {/* Paper Layout */}
-        <div className="grid lg:grid-cols-2 gap-16 lg:gap-24 items-start">
+        <div className="flex flex-col lg:flex-row gap-16 lg:gap-24 items-start">
           
-          {/* Left Column: Visual Assets & Graph */}
-          <div className="flex flex-col gap-12 lg:sticky top-40">
-            
-            {/* AI Neural Network Asset */}
-            <motion.div
-              initial={{ opacity: 0, scale: 0.95 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 1 }}
-              className="w-full relative aspect-video bg-stone-50 rounded-[2rem] overflow-hidden border border-stone-200 p-8 flex items-center justify-center"
-            >
-              <Image 
-                src="/assets/ai_neural_network_1787300644692.png" 
-                alt="AI Neural Network Data Visualization" 
-                fill 
-                className="object-cover mix-blend-multiply opacity-80 hover:scale-105 transition-transform duration-1000" 
-              />
-              <div className="absolute bottom-6 left-6 px-4 py-2 bg-white/90 backdrop-blur-md rounded-lg shadow-sm">
-                <span className="text-xs font-sans font-bold uppercase tracking-widest text-stone-900">Sequential Data Flow Model</span>
-              </div>
-            </motion.div>
-
-            {/* Live Data Comparison Dashboard */}
+          {/* Left: DeepMind Style Academic Text */}
+          <div className="w-full lg:w-1/2 flex flex-col pt-8">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-              className="w-full bg-stone-900 text-white rounded-[2rem] p-10 md:p-14"
+              transition={{ duration: 0.8 }}
             >
-              <h4 className="text-xs font-sans font-bold tracking-[0.2em] uppercase text-stone-400 mb-12 text-center">
-                Efficacy Metrics
-              </h4>
-              
-              <div className="flex flex-col gap-12">
-                {/* Proposed RNN */}
-                <div>
-                  <div className="flex justify-between items-end mb-4">
-                    <span className="text-white font-sans font-medium text-lg">Proposed RNN Architecture</span>
-                    <span className="text-white font-heading font-medium text-5xl leading-none">{research.stats.rnn}</span>
-                  </div>
-                  <div className="w-full h-4 bg-stone-800 rounded-full overflow-hidden relative">
-                    <motion.div 
-                      initial={{ width: 0 }}
-                      whileInView={{ width: "97.25%" }}
-                      viewport={{ once: true }}
-                      transition={{ duration: 2, delay: 0.6, ease: [0.16, 1, 0.3, 1] }}
-                      className="absolute top-0 left-0 h-full bg-rose-400"
-                    />
-                  </div>
-                </div>
+              <div className="inline-flex items-center gap-3 px-4 py-1.5 bg-amber-50 border border-amber-100 rounded-lg text-amber-700 text-xs font-sans font-bold uppercase tracking-widest mb-8">
+                 <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9.5a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z" />
+                 </svg>
+                 Published Research
+              </div>
 
-                {/* Baseline SVM */}
-                <div>
-                  <div className="flex justify-between items-end mb-4">
-                    <span className="text-stone-400 font-sans font-medium">Baseline SVM</span>
-                    <span className="text-stone-400 font-heading font-medium text-2xl leading-none">{research.stats.svm}</span>
-                  </div>
-                  <div className="w-full h-2 bg-stone-800 rounded-full overflow-hidden relative">
-                    <motion.div 
-                      initial={{ width: 0 }}
-                      whileInView={{ width: "84.57%" }}
-                      viewport={{ once: true }}
-                      transition={{ duration: 2, delay: 0.6, ease: [0.16, 1, 0.3, 1] }}
-                      className="absolute top-0 left-0 h-full bg-stone-500"
-                    />
-                  </div>
-                </div>
+              <h2 className="text-3xl md:text-5xl font-heading font-extrabold text-[#0F172A] tracking-tight leading-[1.1] mb-6">
+                {research.title}
+              </h2>
+              
+              <p className="text-[15px] font-sans font-semibold text-[#475569] mb-8">
+                Presented at <span className="text-[#0F172A]">{research.event}</span>
+              </p>
+
+              <div className="space-y-6 text-[#475569] font-sans text-[15px] leading-relaxed">
+                 <p>{research.description}</p>
+                 <p>{research.results}</p>
               </div>
             </motion.div>
           </div>
 
-          {/* Right Column: Editorial Text Blocks */}
-          <div className="flex flex-col gap-16 lg:pt-12">
-            <motion.div
-              initial={{ opacity: 0, x: 20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8 }}
-            >
-              <h4 className="text-[28px] font-heading font-medium text-stone-900 mb-8 border-l-4 border-rose-400 pl-6">
-                The Objective
-              </h4>
-              <p className="text-stone-600 font-sans leading-[1.8] text-[20px] font-light text-justify">
-                {research.description}
-              </p>
-            </motion.div>
+          {/* Right: Pure SVG Animated Graph (Google Research Style) */}
+          <div className="w-full lg:w-1/2">
+             <motion.div
+               initial={{ opacity: 0, scale: 0.95 }}
+               whileInView={{ opacity: 1, scale: 1 }}
+               viewport={{ once: true }}
+               transition={{ duration: 0.8 }}
+               className="w-full bg-white border border-[rgba(15,23,42,0.08)] rounded-2xl p-8 shadow-sm"
+             >
+                <div className="flex items-center justify-between mb-8">
+                   <h3 className="font-sans font-bold text-sm uppercase tracking-widest text-[#0F172A]">Efficacy Analysis</h3>
+                   <div className="flex gap-4">
+                      <div className="flex items-center gap-2">
+                         <div className="w-3 h-3 rounded bg-amber-500" />
+                         <span className="text-xs font-sans text-[#475569]">RNN Model</span>
+                      </div>
+                      <div className="flex items-center gap-2">
+                         <div className="w-3 h-3 rounded bg-[#E2E8F0]" />
+                         <span className="text-xs font-sans text-[#475569]">SVM Baseline</span>
+                      </div>
+                   </div>
+                </div>
 
-            <motion.div
-              initial={{ opacity: 0, x: 20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-            >
-              <h4 className="text-[28px] font-heading font-medium text-stone-900 mb-8 border-l-4 border-stone-900 pl-6">
-                Methodology & Findings
-              </h4>
-              <p className="text-stone-600 font-sans leading-[1.8] text-[20px] font-light text-justify">
-                {research.results}
-              </p>
-            </motion.div>
+                {/* Animated Comparison Chart */}
+                <div className="w-full h-64 relative flex items-end gap-8 border-b border-l border-[#E2E8F0] px-6 pb-0 pt-6">
+                   {/* Y Axis Labels */}
+                   <div className="absolute left-[-30px] top-0 bottom-0 flex flex-col justify-between text-[10px] font-sans text-[#94A3B8] pb-6">
+                      <span>100%</span>
+                      <span>50%</span>
+                      <span>0%</span>
+                   </div>
 
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8, delay: 0.4 }}
-              className="glass-card-premium p-10 bg-white"
-            >
-               <h5 className="text-sm font-sans font-bold tracking-[0.1em] uppercase text-stone-900 mb-4">Conclusion Highlights</h5>
-               <ul className="space-y-4">
-                 <li className="flex items-start gap-4 text-stone-600 font-sans text-lg font-light">
-                   <span className="w-2 h-2 rounded-full bg-rose-400 mt-2 flex-shrink-0" />
-                   RNNs demonstrate superior capability in handling sequential emotional data streams.
-                 </li>
-                 <li className="flex items-start gap-4 text-stone-600 font-sans text-lg font-light">
-                   <span className="w-2 h-2 rounded-full bg-rose-400 mt-2 flex-shrink-0" />
-                   Identified a statistically significant reduction in false negatives compared to traditional SVMs.
-                 </li>
-               </ul>
-            </motion.div>
+                   {/* SVM Bar */}
+                   <div className="flex-1 flex flex-col items-center gap-3 relative h-full justify-end">
+                      <motion.div 
+                        initial={{ height: 0 }}
+                        whileInView={{ height: "84.57%" }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 1.5, ease: "easeOut" }}
+                        className="w-full max-w-[80px] bg-[#E2E8F0] rounded-t-md relative group"
+                      >
+                         <span className="absolute -top-6 left-1/2 -translate-x-1/2 text-[11px] font-sans font-bold text-[#475569] opacity-0 group-hover:opacity-100 transition-opacity">84.57%</span>
+                      </motion.div>
+                      <span className="text-[11px] font-sans font-bold text-[#475569] absolute -bottom-6">Baseline (SVM)</span>
+                   </div>
+
+                   {/* RNN Bar */}
+                   <div className="flex-1 flex flex-col items-center gap-3 relative h-full justify-end">
+                      <motion.div 
+                        initial={{ height: 0 }}
+                        whileInView={{ height: "97.25%" }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 1.5, delay: 0.3, ease: "easeOut" }}
+                        className="w-full max-w-[80px] bg-amber-500 rounded-t-md relative group shadow-[0_0_20px_rgba(245,158,11,0.3)]"
+                      >
+                         <span className="absolute -top-6 left-1/2 -translate-x-1/2 text-[11px] font-sans font-bold text-amber-600 opacity-100">97.25%</span>
+                      </motion.div>
+                      <span className="text-[11px] font-sans font-bold text-[#0F172A] absolute -bottom-6">Proposed (RNN)</span>
+                   </div>
+                </div>
+                
+             </motion.div>
           </div>
 
         </div>

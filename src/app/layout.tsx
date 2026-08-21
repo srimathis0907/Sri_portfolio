@@ -1,18 +1,18 @@
 import type { Metadata } from "next";
-import { Manrope, Outfit } from "next/font/google";
+import { Inter, Plus_Jakarta_Sans } from "next/font/google";
 import "./globals.css";
 import SmoothScroll from "@/components/layout/SmoothScroll";
 import Navbar from "@/components/layout/Navbar";
 
-const manrope = Manrope({
+const inter = Inter({
   subsets: ["latin"],
-  variable: "--font-manrope",
+  variable: "--font-inter",
   display: "swap",
 });
 
-const outfit = Outfit({
+const jakarta = Plus_Jakarta_Sans({
   subsets: ["latin"],
-  variable: "--font-outfit",
+  variable: "--font-jakarta",
   display: "swap",
 });
 
@@ -35,8 +35,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`scroll-smooth ${manrope.variable} ${outfit.variable}`}>
-      <body className={`${manrope.variable} ${outfit.variable} antialiased selection:bg-stone-800 selection:text-stone-100 relative bg-[#F4F1EA]`}>
+    <html lang="en" className={`scroll-smooth ${inter.variable} ${jakarta.variable}`}>
+      <body className={`${inter.variable} ${jakarta.variable} antialiased selection:bg-[#0F172A] selection:text-white relative bg-[#FCFCFA]`}>
         <div className="noise-overlay" />
         <SmoothScroll>
           <Navbar />

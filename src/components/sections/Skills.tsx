@@ -1,138 +1,101 @@
 "use client";
 
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import { useState } from "react";
 import { resumeData } from "@/data/resumeData";
 
-const SKILL_CLUSTERS = [
-  {
-    id: "core",
-    title: "Core Architecture",
-    x: "30%",
-    y: "40%",
-    skills: [...resumeData.skills.programming, ...resumeData.skills.coreConcepts],
-  },
-  {
-    id: "data",
-    title: "Data Intelligence",
-    x: "70%",
-    y: "30%",
-    skills: [...resumeData.skills.database, "Analytics", "System Design"],
-  },
-  {
-    id: "ecosystem",
-    title: "Ecosystem Tools",
-    x: "50%",
-    y: "70%",
-    skills: resumeData.skills.tools,
-  }
+const SKILL_GROUPS = [
+  { id: "languages", label: "Languages", items: resumeData.skills.programming },
+  { id: "frameworks", label: "Frameworks & Libraries", items: ["React", "Next.js", "Spring Boot", "Express", "Node.js"] },
+  { id: "database", label: "Database", items: resumeData.skills.database },
+  { id: "tools", label: "Ecosystem & Tools", items: resumeData.skills.tools }
 ];
 
 export default function Skills() {
-  const [activeCluster, setActiveCluster] = useState<string | null>(null);
+  const [activeGroup, setActiveGroup] = useState<string | null>(null);
 
   return (
-    <section id="skills" className="py-32 md:py-48 w-full relative overflow-hidden bg-[#F4F1EA] editorial-border">
-      
-      <div className="container mx-auto px-6 mb-20 text-center relative z-20">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
-        >
-          <h2 className="text-xs font-sans font-bold tracking-[0.2em] uppercase text-stone-400 mb-6">
-            Technical Constellation
-          </h2>
-        </motion.div>
-      </div>
-
-      {/* Floating Galaxy Area */}
-      <div className="relative w-full h-[600px] md:h-[800px] max-w-7xl mx-auto flex items-center justify-center pointer-events-auto">
+    <section id="skills" className="py-24 md:py-32 w-full bg-[#FCFCFA] relative overflow-hidden">
+      <div className="container mx-auto px-6 max-w-7xl">
         
-        {/* Minimalist SVG Network Grid Background */}
-        <svg className="absolute inset-0 w-full h-full pointer-events-none opacity-30" viewBox="0 0 1000 800" preserveAspectRatio="none">
-           <path d="M 300 320 L 700 240 L 500 560 Z" className="text-stone-300" stroke="currentColor" strokeWidth="1" fill="none" strokeDasharray="4 4" />
-           <circle cx="300" cy="320" r="100" stroke="#D9D2C5" strokeWidth="1" fill="none" />
-           <circle cx="700" cy="240" r="120" stroke="#D9D2C5" strokeWidth="1" fill="none" />
-           <circle cx="500" cy="560" r="140" stroke="#D9D2C5" strokeWidth="1" fill="none" />
-        </svg>
+        <div className="text-center mb-20">
+          <motion.h2 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+            className="text-3xl md:text-5xl font-heading font-extrabold text-[#0F172A] tracking-tight mb-4"
+          >
+            Technology Ecosystem.
+          </motion.h2>
+          <p className="text-[#475569] font-sans text-lg">
+            Vercel-style integration dashboard for technical competencies.
+          </p>
+        </div>
 
-        {SKILL_CLUSTERS.map((cluster) => {
-          const isActive = activeCluster === cluster.id;
-          const isFaded = activeCluster !== null && !isActive;
-
-          return (
-            <motion.div
-              key={cluster.id}
-              className="absolute flex flex-col items-center justify-center cursor-pointer group"
-              style={{ left: cluster.x, top: cluster.y, x: "-50%", y: "-50%" }}
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 1 }}
-              onHoverStart={() => setActiveCluster(cluster.id)}
-              onHoverEnd={() => setActiveCluster(null)}
-              animate={{
-                opacity: isFaded ? 0.2 : 1,
-              }}
-            >
-              {/* Raw Typography Core Node */}
-              <div className="relative z-10 flex items-center justify-center p-8 bg-[#F4F1EA] rounded-full border border-stone-200 shadow-[0_0_40px_rgba(0,0,0,0.02)] transition-transform duration-500 hover:scale-105">
-                <span className="font-heading font-medium text-xl md:text-2xl tracking-tight text-stone-900">
-                  {cluster.title}
-                </span>
-                
-                {/* Active Indicator Ring */}
-                {isActive && (
-                  <motion.div 
-                    layoutId="activeRing"
-                    className="absolute inset-[-10px] rounded-full border border-stone-800"
-                    transition={{ type: "spring", stiffness: 200, damping: 20 }}
-                  />
-                )}
+        <div className="w-full max-w-5xl mx-auto flex flex-col md:flex-row gap-6 relative">
+          
+          {/* Left Column: Group Selectors */}
+          <div className="w-full md:w-1/3 flex flex-col gap-2">
+            {SKILL_GROUPS.map((group) => (
+              <div 
+                key={group.id}
+                onMouseEnter={() => setActiveGroup(group.id)}
+                onMouseLeave={() => setActiveGroup(null)}
+                className={`p-4 rounded-xl cursor-default transition-all duration-300 border ${activeGroup === group.id ? 'bg-white border-[rgba(15,23,42,0.08)] shadow-sm' : 'bg-transparent border-transparent hover:bg-white/50'}`}
+              >
+                <div className="flex items-center justify-between">
+                  <span className={`font-sans font-semibold text-sm ${activeGroup === group.id ? 'text-[#0F172A]' : 'text-[#475569]'}`}>
+                    {group.label}
+                  </span>
+                  {activeGroup === group.id && (
+                     <motion.div layoutId="tealDot" className="w-2 h-2 rounded-full bg-teal-500" />
+                  )}
+                </div>
               </div>
+            ))}
+          </div>
 
-              {/* Orbiting Minimal Skills */}
-              <AnimatePresence>
-                {isActive && (
+          {/* Right Column: Interactive Grid (Vercel Style) */}
+          <div className="w-full md:w-2/3 bg-white border border-[rgba(15,23,42,0.08)] rounded-2xl p-8 shadow-sm min-h-[300px] relative overflow-hidden flex items-center justify-center">
+            
+            <div className="absolute inset-0 opacity-[0.03] pointer-events-none" style={{ backgroundImage: 'radial-gradient(#0F172A 1px, transparent 1px)', backgroundSize: '20px 20px' }} />
+
+            {!activeGroup ? (
+              <div className="text-center">
+                <div className="w-16 h-16 mx-auto bg-[#F3F4F6] rounded-2xl flex items-center justify-center mb-4 border border-[rgba(15,23,42,0.04)]">
+                   <svg className="w-6 h-6 text-[#94A3B8]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z" />
+                   </svg>
+                </div>
+                <p className="text-sm font-sans text-[#475569]">Hover over a category to explore.</p>
+              </div>
+            ) : (
+              <motion.div 
+                key={activeGroup}
+                initial={{ opacity: 0, scale: 0.95 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.3 }}
+                className="w-full flex flex-wrap justify-center gap-4 relative z-10"
+              >
+                {SKILL_GROUPS.find(g => g.id === activeGroup)?.items.map((item, idx) => (
                   <motion.div
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    exit={{ opacity: 0 }}
-                    transition={{ duration: 0.5 }}
-                    className="absolute inset-0 pointer-events-none"
+                    key={idx}
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.3, delay: idx * 0.05 }}
+                    className="px-5 py-3 bg-white border border-[rgba(15,23,42,0.08)] rounded-xl shadow-sm hover:border-teal-300 hover:shadow-[0_4px_20px_rgba(20,184,166,0.1)] transition-all duration-300 flex items-center gap-3 cursor-default"
                   >
-                    {cluster.skills.map((skill, idx) => {
-                      const angle = (idx / cluster.skills.length) * Math.PI * 2;
-                      const radius = 180; 
-                      const tx = Math.cos(angle) * radius;
-                      const ty = Math.sin(angle) * radius;
-
-                      return (
-                        <motion.div
-                          key={idx}
-                          initial={{ opacity: 0, x: 0, y: 0 }}
-                          animate={{ opacity: 1, x: tx, y: ty }}
-                          exit={{ opacity: 0, x: 0, y: 0 }}
-                          transition={{ 
-                            type: "spring", 
-                            stiffness: 150, 
-                            damping: 15, 
-                            delay: idx * 0.05 
-                          }}
-                          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 px-4 py-2 bg-stone-900 text-[#F4F1EA] whitespace-nowrap font-sans font-medium text-xs tracking-widest uppercase z-20"
-                        >
-                          {skill}
-                        </motion.div>
-                      );
-                    })}
+                    <div className="w-2 h-2 rounded-full bg-teal-400" />
+                    <span className="font-sans font-semibold text-sm text-[#0F172A]">{item}</span>
                   </motion.div>
-                )}
-              </AnimatePresence>
-            </motion.div>
-          );
-        })}
+                ))}
+              </motion.div>
+            )}
+
+          </div>
+
+        </div>
 
       </div>
     </section>
