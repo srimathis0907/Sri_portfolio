@@ -36,9 +36,8 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`scroll-smooth ${manrope.variable} ${outfit.variable}`}>
-      <body className={`${manrope.variable} ${outfit.variable} antialiased selection:bg-orchid-glow/30 selection:text-stone-900 relative`}>
+      <body className={`${manrope.variable} ${outfit.variable} antialiased selection:bg-stone-800 selection:text-stone-100 relative bg-[#F4F1EA]`}>
         <div className="noise-overlay" />
-        <div className="mesh-bg" />
         <SmoothScroll>
           <Navbar />
           {children}

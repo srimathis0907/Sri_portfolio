@@ -5,61 +5,57 @@ import { resumeData } from "@/data/resumeData";
 
 export default function Certifications() {
   return (
-    <section id="certifications" className="py-32 w-full relative z-10 overflow-hidden">
-      <div className="container mx-auto px-6 max-w-6xl">
+    <section id="certifications" className="py-32 w-full relative bg-[#F4F1EA] editorial-border">
+      <div className="container mx-auto px-6 max-w-7xl">
         
-        <div className="mb-24 flex flex-col md:flex-row justify-between items-end gap-8 border-b border-stone-200 pb-8">
+        <div className="mb-24 flex flex-col items-start">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
           >
-            <h2 className="text-[40px] md:text-[56px] font-heading font-medium leading-[1] text-stone-900 tracking-tight">
-              Verified <span className="text-stone-400 italic font-light">Credentials.</span>
+             <h2 className="text-xs font-sans font-bold tracking-[0.2em] uppercase text-stone-400 mb-6">
+              Official Credentials
             </h2>
+            <h3 className="text-[56px] md:text-[80px] font-heading font-medium leading-[0.9] text-stone-900 tracking-[-0.03em]">
+              Verified <br />Excellence.
+            </h3>
           </motion.div>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-10">
+        <div className="flex flex-col gap-16">
           {resumeData.certifications.map((cert, idx) => (
             <motion.div
               key={idx}
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-100px" }}
-              transition={{ duration: 0.8, delay: idx * 0.1, ease: [0.16, 1, 0.3, 1] }}
-              className="group relative h-[350px] rounded-[2rem] overflow-hidden bg-white border border-stone-200 p-10 flex flex-col justify-between cursor-pointer"
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, delay: idx * 0.1 }}
+              className="group relative w-full lg:w-3/4 mx-auto bg-stone-100 p-12 md:p-20 flex flex-col justify-center items-center text-center cursor-default border border-stone-200"
             >
-              {/* Animated Hover Light */}
-              <div className="absolute inset-0 bg-gradient-to-br from-white via-white/50 to-stone-100 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" />
-              <div className="absolute -top-32 -right-32 w-64 h-64 bg-stone-100 rounded-full blur-[50px] group-hover:bg-rose-quartz/40 transition-colors duration-700 pointer-events-none" />
+              {/* Premium Paper Texture / Foil Shine */}
+              <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-1000 bg-gradient-to-tr from-transparent via-white/40 to-transparent translate-x-[-100%] group-hover:translate-x-[100%] ease-in-out pointer-events-none" />
               
-              <div className="relative z-10">
-                <div className="flex items-center gap-4 mb-8">
-                  {/* Luxury Seal */}
-                  <div className="w-12 h-12 rounded-full border border-stone-900 flex items-center justify-center">
-                    <div className="w-8 h-8 rounded-full bg-stone-900 flex items-center justify-center">
-                      <div className="w-2 h-2 rounded-full bg-white" />
-                    </div>
-                  </div>
-                  <span className="text-xs font-sans font-bold tracking-[0.2em] uppercase text-stone-500">Official Certification</span>
-                </div>
-                
-                <h4 className="text-2xl md:text-3xl font-heading font-medium text-stone-900 leading-snug group-hover:text-stone-700 transition-colors duration-500">
-                  {cert.title}
-                </h4>
+              {/* Gold Seal Graphic */}
+              <div className="w-24 h-24 mb-10 relative flex items-center justify-center">
+                 <svg viewBox="0 0 100 100" className="w-full h-full absolute animate-spin-slow" style={{ animationDuration: '20s' }}>
+                    <polygon points="50,5 61,25 82,25 71,45 82,65 61,65 50,85 39,65 18,65 29,45 18,25 39,25" fill="none" stroke="#C97A7E" strokeWidth="1" />
+                    <circle cx="50" cy="45" r="20" fill="none" stroke="#C97A7E" strokeWidth="1" />
+                 </svg>
+                 <span className="font-heading text-2xl text-[#C97A7E]">1</span>
               </div>
               
-              <div className="relative z-10 flex items-center justify-between">
-                <span className="text-sm font-sans font-bold text-stone-400 uppercase tracking-widest">
-                  {cert.date}
-                </span>
-                <div className="overflow-hidden h-6 flex items-center">
-                  <span className="text-sm font-sans font-medium text-stone-900 uppercase tracking-widest translate-y-6 group-hover:translate-y-0 transition-transform duration-500">
-                    View Credential
-                  </span>
-                </div>
+              <h4 className="text-3xl md:text-5xl font-heading font-medium text-stone-900 leading-tight mb-8">
+                {cert.title}
+              </h4>
+              
+              <div className="flex items-center gap-6">
+                 <div className="h-[1px] w-12 bg-stone-300" />
+                 <span className="text-sm font-sans font-bold text-stone-500 uppercase tracking-[0.2em]">
+                   {cert.date}
+                 </span>
+                 <div className="h-[1px] w-12 bg-stone-300" />
               </div>
             </motion.div>
           ))}

@@ -28,53 +28,57 @@ export default function Achievements() {
   ];
 
   return (
-    <section id="achievements" className="py-32 w-full relative z-10 bg-stone-900 text-white overflow-hidden">
-      
-      {/* Dark Ambient Glow */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-white/5 rounded-full blur-[120px] pointer-events-none" />
-
-      <div className="container mx-auto px-6 max-w-6xl relative z-20">
+    <section id="achievements" className="py-32 w-full relative bg-[#F4F1EA] editorial-border">
+      <div className="container mx-auto px-6 max-w-7xl relative z-20">
         
-        <div className="text-center mb-24">
+        <div className="mb-24 flex justify-end">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+            className="text-right"
           >
             <h2 className="text-xs font-sans font-bold tracking-[0.2em] uppercase text-stone-400 mb-6">
-              Recognition Wall
+              Gallery of Distinction
             </h2>
-            <h3 className="text-[40px] md:text-[64px] font-heading font-medium leading-[1.1] text-white tracking-tight">
-              Professional <br />
-              <span className="text-stone-400 italic font-light">Milestones.</span>
+            <h3 className="text-[40px] md:text-[64px] font-heading font-medium leading-[1] text-stone-900 tracking-tight">
+              Selected <br />
+              <span className="text-stone-400 italic font-light">Honors.</span>
             </h3>
           </motion.div>
         </div>
 
-        <div className="flex flex-col border-t border-stone-800">
+        <div className="flex flex-col">
           {highlights.map((item, idx) => (
             <motion.div
               key={idx}
-              initial={{ opacity: 0, x: -30 }}
+              initial={{ opacity: 0, x: 30 }}
               whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true, margin: "-100px" }}
-              transition={{ duration: 0.8, delay: idx * 0.1, ease: [0.16, 1, 0.3, 1] }}
-              className="group flex flex-col md:flex-row md:items-center justify-between py-12 border-b border-stone-800 hover:bg-stone-800/30 transition-colors duration-500 px-8 -mx-8 rounded-2xl cursor-default"
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, delay: idx * 0.1 }}
+              className="group flex flex-col md:flex-row md:items-end justify-between py-12 border-t border-stone-300 hover:border-stone-900 transition-colors duration-700 cursor-default"
             >
-              <div className="flex-1">
-                <h4 className="text-2xl md:text-4xl font-heading font-medium text-white mb-2 group-hover:pl-4 transition-all duration-500">
+              <div className="flex-1 pr-8">
+                <span className="block text-[10px] font-sans font-bold tracking-[0.2em] uppercase text-stone-400 mb-4 group-hover:text-stone-900 transition-colors">
+                  0{idx + 1}
+                </span>
+                <h4 className="text-3xl md:text-5xl font-heading font-medium text-stone-900 mb-4 group-hover:opacity-60 transition-opacity duration-500 leading-tight">
                   {item.title}
                 </h4>
-                <p className="text-stone-400 font-sans text-lg font-light group-hover:pl-4 transition-all duration-500 delay-75">
+                <p className="text-stone-500 font-sans text-lg font-light">
                   {item.subtitle}
                 </p>
               </div>
-              <div className="mt-6 md:mt-0 text-stone-600 font-heading font-light text-2xl md:text-3xl tracking-widest">
-                {item.year}
+              
+              <div className="mt-8 md:mt-0">
+                <div className="w-16 h-16 rounded-full border border-stone-300 flex items-center justify-center group-hover:bg-stone-900 group-hover:text-[#F4F1EA] transition-all duration-700">
+                  <span className="text-sm font-sans font-bold tracking-widest">{item.year}</span>
+                </div>
               </div>
             </motion.div>
           ))}
+          <div className="border-t border-stone-300" />
         </div>
         
       </div>
