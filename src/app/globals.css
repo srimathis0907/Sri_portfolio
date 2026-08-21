@@ -1,26 +1,91 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@theme {
+  --color-indigo-50: #EEF2FF;
+  --color-indigo-100: #E0E7FF;
+  --color-indigo-500: #6366F1;
+  --color-indigo-600: #4F46E5;
+  --color-indigo-900: #312E81;
+  
+  --color-primary: #4F46E5; /* Royal Indigo */
+  --color-accent: #8B5CF6; /* Violet */
+  --color-secondary: #06B6D4; /* Cyan */
+  --color-lavender: #E9E5FF;
+  
+  --font-sans: var(--font-inter), system-ui, sans-serif;
+  --font-heading: var(--font-sora), system-ui, sans-serif;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@layer base {
+  body {
+    @apply font-sans text-slate-800 antialiased overflow-x-hidden;
+    background: linear-gradient(135deg, #FAFBFF 0%, #F5F3FF 30%, #EEF4FF 70%, #FFFFFF 100%);
+    background-attachment: fixed;
+    min-height: 100vh;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-heading tracking-tight;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@layer utilities {
+  .glass-panel {
+    @apply bg-white/60 backdrop-blur-2xl border border-white/50 shadow-[0_8px_30px_rgb(0,0,0,0.04)] relative overflow-hidden;
+  }
+  
+  .glass-panel::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 1px;
+    background: linear-gradient(135deg, rgba(255,255,255,0.9), rgba(255,255,255,0) 50%, rgba(255,255,255,0.7));
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+  }
+
+  .text-gradient-primary {
+    background: linear-gradient(90deg, #4F46E5, #8B5CF6, #06B6D4);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-size: 200% 100%;
+    animation: gradientShift 5s ease infinite;
+  }
+
+  @keyframes gradientShift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+
+  .ambient-glow {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(100px);
+    opacity: 0.4;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* Animated timeline glow styles */
+  .timeline-icon-glow {
+    box-shadow: 0 0 25px rgba(6, 182, 212, 0.5);
+  }
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #FAFBFF;
+}
+::-webkit-scrollbar-thumb {
+  background: #C7D2FE;
+  border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #8B5CF6;
 }
