@@ -1,101 +1,114 @@
 "use client";
 
-import { motion, Variants } from "framer-motion";
+import { motion } from "framer-motion";
 import { useEffect, useRef } from "react";
+import Image from "next/image";
 import gsap from "gsap";
-import { resumeData } from "@/data/resumeData";
 
 export default function Hero() {
   const containerRef = useRef<HTMLDivElement>(null);
   const blobRef = useRef<HTMLDivElement>(null);
+  const ribbonRef = useRef<SVGSVGElement>(null);
 
   useEffect(() => {
-    // Mouse follower for the blob
+    // Advanced mouse parallax for the 3D asset
     const handleMouseMove = (e: MouseEvent) => {
       if (!blobRef.current) return;
       const { clientX, clientY } = e;
-      const xPos = (clientX / window.innerWidth - 0.5) * 100;
-      const yPos = (clientY / window.innerHeight - 0.5) * 100;
+      const xPos = (clientX / window.innerWidth - 0.5) * 60;
+      const yPos = (clientY / window.innerHeight - 0.5) * 60;
 
       gsap.to(blobRef.current, {
         x: xPos,
         y: yPos,
-        duration: 3,
-        ease: "power3.out",
+        rotationX: yPos * 0.2,
+        rotationY: xPos * 0.2,
+        duration: 2,
+        ease: "power2.out",
       });
+      
+      if(ribbonRef.current) {
+        gsap.to(ribbonRef.current, {
+          x: xPos * -0.5,
+          y: yPos * -0.5,
+          duration: 3,
+          ease: "power2.out",
+        });
+      }
     };
 
     window.addEventListener("mousemove", handleMouseMove);
     return () => window.removeEventListener("mousemove", handleMouseMove);
   }, []);
 
-  const roles = resumeData.personal.roles;
-
-  const containerVariants: Variants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: { staggerChildren: 0.2, delayChildren: 0.3 }
-    }
-  };
-
-  const textVariants: Variants = {
-    hidden: { opacity: 0, y: 40, filter: "blur(10px)" },
-    visible: { 
-      opacity: 1, 
-      y: 0, 
-      filter: "blur(0px)",
-      transition: { duration: 1.2, ease: [0.16, 1, 0.3, 1] }
-    }
-  };
-
   return (
-    <section ref={containerRef} className="relative min-h-screen w-full flex items-center justify-center pt-20 overflow-hidden">
+    <section ref={containerRef} className="relative min-h-screen w-full flex items-center pt-24 pb-12 overflow-hidden perspective-1000">
       
-      {/* Interactive Depth Blob */}
-      <div 
-        ref={blobRef}
-        className="absolute w-[600px] h-[600px] rounded-full bg-gradient-to-tr from-rose-quartz/40 to-lavender-mist/40 mix-blend-multiply filter blur-[100px] opacity-70 pointer-events-none -z-10"
-      />
-
-      <div className="container mx-auto px-6 relative z-10 flex flex-col items-center text-center">
+      {/* Immersive SVG Background & Particles */}
+      <div className="absolute inset-0 pointer-events-none -z-10">
+        <svg ref={ribbonRef} className="absolute w-[120vw] h-[120vh] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-20" viewBox="0 0 800 600" preserveAspectRatio="none">
+           <path d="M-100,300 C150,100 250,500 500,300 S750,100 900,300" fill="none" stroke="#D0BFFF" strokeWidth="1.5" />
+           <path d="M-100,320 C200,120 300,520 600,320 S800,120 900,320" fill="none" stroke="#F4DCD6" strokeWidth="1" />
+        </svg>
         
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          animate="visible"
-          className="flex flex-col items-center max-w-5xl"
-        >
-          <motion.div variants={textVariants} className="mb-6">
-            <span className="px-6 py-2 rounded-full border border-stone-200/50 bg-white/30 backdrop-blur-md text-sm font-sans font-medium text-stone-600 tracking-widest uppercase">
-              Creative Engineer
-            </span>
-          </motion.div>
+        {/* Soft Animated Light Beams */}
+        <motion.div animate={{ rotate: 360 }} transition={{ duration: 100, repeat: Infinity, ease: "linear" }} className="absolute top-[-20%] left-[-10%] w-[80vw] h-[80vw] bg-gradient-to-tr from-lavender-mist/30 via-transparent to-transparent rounded-full blur-[100px]" />
+        <motion.div animate={{ rotate: -360 }} transition={{ duration: 120, repeat: Infinity, ease: "linear" }} className="absolute bottom-[-20%] right-[-10%] w-[70vw] h-[70vw] bg-gradient-to-bl from-rose-quartz/20 via-transparent to-transparent rounded-full blur-[120px]" />
+      </div>
 
-          <motion.h1 
-            className="text-[60px] md:text-[90px] lg:text-[140px] font-heading font-medium leading-[0.9] text-stone-900 tracking-[-0.04em] mb-8"
+      <div className="container mx-auto px-6 max-w-7xl relative z-10 grid lg:grid-cols-2 gap-12 items-center h-full">
+        
+        {/* Left Column: Massive Editorial Typography */}
+        <div className="flex flex-col items-start z-20 mix-blend-multiply">
+          <motion.div
+            initial={{ opacity: 0, y: 50, filter: "blur(10px)" }}
+            animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+            transition={{ duration: 1.2, ease: "easeOut" }}
+            className="mb-8"
           >
-            <motion.span variants={textVariants} className="block text-stone-400 font-light italic mb-2">Designing</motion.span>
-            <motion.span variants={textVariants} className="block">Digital Intent.</motion.span>
-          </motion.h1>
+            <span className="inline-flex items-center gap-3 px-4 py-2 border border-stone-300 rounded-full text-xs font-sans font-bold tracking-[0.2em] uppercase text-stone-500 mb-8">
+              <span className="w-2 h-2 rounded-full bg-rose-400 animate-pulse" />
+              Srimathi S &mdash; Creative Portfolio
+            </span>
+            
+            <h1 className="text-[64px] md:text-[88px] lg:text-[110px] font-heading font-semibold leading-[0.85] text-stone-900 tracking-[-0.04em]">
+              Architecting<br />
+              <span className="italic font-light text-stone-400 relative">
+                Digital
+                <span className="absolute -bottom-2 left-0 w-full h-1 bg-gradient-to-r from-orchid-glow to-transparent" />
+              </span><br />
+              Emotion.
+            </h1>
+          </motion.div>
 
           <motion.p 
-            variants={textVariants}
-            className="text-xl md:text-3xl text-stone-500 font-sans font-light max-w-2xl leading-relaxed mb-16"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 1.5, delay: 0.6 }}
+            className="text-lg md:text-2xl text-stone-600 font-sans font-light max-w-lg leading-relaxed mb-12"
           >
-            I am <span className="font-semibold text-stone-800">Srimathi S.</span> A {roles[0].toLowerCase()} blurring the line between robust architecture and immersive human experiences.
+            I fuse robust Android engineering with high-end data analytics to craft products that perform flawlessly and feel unforgettable.
           </motion.p>
+        </div>
 
-          <motion.div variants={textVariants}>
-            <a
-              href="#projects"
-              className="relative overflow-hidden group inline-flex items-center justify-center px-10 py-5 rounded-full bg-stone-900 text-white font-sans font-semibold text-lg transition-transform hover:scale-105 duration-500"
-            >
-              <span className="relative z-10">Experience the Work</span>
-              <div className="absolute inset-0 bg-gradient-to-r from-stone-800 to-stone-700 translate-y-[100%] group-hover:translate-y-0 transition-transform duration-500 ease-in-out" />
-            </a>
+        {/* Right Column: 3D Visual Asset */}
+        <div className="relative w-full h-[50vh] lg:h-[80vh] flex items-center justify-center z-10 transform-style-3d">
+          <motion.div 
+            ref={blobRef}
+            initial={{ opacity: 0, scale: 0.8, rotate: -15 }}
+            animate={{ opacity: 1, scale: 1, rotate: 0 }}
+            transition={{ duration: 2, ease: "easeOut" }}
+            className="relative w-full max-w-[600px] aspect-square drop-shadow-2xl"
+          >
+            <Image 
+              src="/assets/abstract_aurora_blob_1787300612275.png"
+              alt="Premium 3D Abstract Blob"
+              fill
+              className="object-contain filter saturate-110 hue-rotate-15 contrast-125 hover:scale-105 transition-transform duration-1000"
+              priority
+            />
           </motion.div>
-        </motion.div>
+        </div>
 
       </div>
     </section>

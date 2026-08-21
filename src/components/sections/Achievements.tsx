@@ -6,19 +6,19 @@ import { resumeData } from "@/data/resumeData";
 export default function Achievements() {
   const highlights = [
     {
-      title: "Oracle Certified Java SE 17 Developer",
+      title: "Oracle Certified Professional: Java SE 17 Developer",
       subtitle: "Verified Global Credential",
-      year: "2024"
+      year: "2025"
     },
     {
       title: resumeData.achievements[0].title,
       subtitle: resumeData.achievements[0].organization,
-      year: "2024"
+      year: "2026"
     },
     {
       title: "Data Analytics Intern",
       subtitle: "CodeFluxz - Performance Excellence",
-      year: "2023"
+      year: "2025"
     },
     {
       title: "Academic Excellence",
