@@ -1,100 +1,121 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
+import { useState } from "react";
 import { resumeData } from "@/data/resumeData";
+import { Code2, Database, Wrench, Sparkles } from "lucide-react";
 
-const skillCategories = [
+const SKILL_CATEGORIES = [
   {
-    title: "Programming & Core",
+    id: "programming",
+    title: "Core Programming",
+    icon: <Code2 size={24} />,
     items: [...resumeData.skills.programming, ...resumeData.skills.coreConcepts],
-    color: "from-indigo-500 to-purple-500"
+    color: "text-orchid"
   },
   {
-    title: "Database & Backend",
-    items: [...resumeData.skills.database, "PHP"],
-    color: "from-cyan-400 to-blue-500"
+    id: "database",
+    title: "Database & Analytics",
+    icon: <Database size={24} />,
+    items: [...resumeData.skills.database, "Data Analytics", "Power BI"],
+    color: "text-coral"
   },
   {
-    title: "Tools & Analytics",
+    id: "tools",
+    title: "Development Tools",
+    icon: <Wrench size={24} />,
     items: resumeData.skills.tools,
-    color: "from-emerald-400 to-teal-500"
+    color: "text-sky"
   },
   {
-    title: "Soft Skills",
+    id: "soft",
+    title: "Professional Skills",
+    icon: <Sparkles size={24} />,
     items: resumeData.skills.softSkills,
-    color: "from-orange-400 to-rose-400"
+    color: "text-rose"
   }
 ];
 
-const containerVariants = {
-  hidden: { opacity: 0 },
-  show: {
-    opacity: 1,
-    transition: { staggerChildren: 0.1 }
-  }
-};
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-const itemVariants: any = {
-  hidden: { opacity: 0, y: 20 },
-  show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] } }
-};
-
 export default function Skills() {
+  const [activeCategory, setActiveCategory] = useState<string>("programming");
+
   return (
-    <section id="skills" className="py-32 w-full relative z-10 overflow-hidden">
+    <section id="skills" className="py-32 w-full relative z-10 bg-ivory">
       <div className="container mx-auto px-6 max-w-6xl relative z-20">
         
-        <div className="text-center mb-24">
+        <div className="mb-20 text-center">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
           >
-            <h2 className="text-sm font-bold tracking-widest uppercase text-indigo-500 mb-4">Technical Arsenal</h2>
-            <h3 className="text-[40px] md:text-[56px] font-heading font-black leading-[1.1] text-slate-900 tracking-tight">
-              Tools of the <span className="text-gradient-primary">Trade.</span>
+            <h2 className="text-xs font-semibold tracking-[0.2em] uppercase text-orchid mb-4">
+              Technical Capabilities
+            </h2>
+            <h3 className="text-[40px] md:text-[56px] font-heading font-medium leading-[1.1] text-slate-900 tracking-tight">
+              Arsenal & Expertise
             </h3>
           </motion.div>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-8">
-          {skillCategories.map((category, idx) => (
-            <motion.div
-              key={idx}
-              initial={{ opacity: 0, scale: 0.95 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true, margin: "-100px" }}
-              transition={{ duration: 0.6, delay: idx * 0.1, ease: [0.22, 1, 0.36, 1] }}
-              className="glass-panel p-10 rounded-[32px] group relative overflow-hidden"
-            >
-              {/* Subtle hover background glow */}
-              <div className={`absolute -inset-10 opacity-0 group-hover:opacity-10 transition-opacity duration-700 bg-gradient-to-r ${category.color} blur-3xl`} />
-              
-              <h4 className="text-2xl font-heading font-bold text-slate-900 mb-8 relative z-10">{category.title}</h4>
-              
-              <motion.div 
-                variants={containerVariants}
-                initial="hidden"
-                whileInView="show"
-                viewport={{ once: true }}
-                className="flex flex-wrap gap-4 relative z-10"
+        <div className="flex flex-col lg:flex-row gap-16">
+          
+          {/* Category Selector */}
+          <div className="w-full lg:w-1/3 flex flex-col gap-4">
+            {SKILL_CATEGORIES.map((cat) => (
+              <button
+                key={cat.id}
+                onClick={() => setActiveCategory(cat.id)}
+                className={`group flex items-center gap-6 p-6 rounded-3xl transition-all duration-500 text-left border ${
+                  activeCategory === cat.id 
+                    ? "bg-white border-slate-200 shadow-[0_20px_40px_rgb(0,0,0,0.03)]" 
+                    : "bg-transparent border-transparent hover:bg-slate-50"
+                }`}
               >
-                {category.items.map((skill, sIdx) => (
-                  <motion.div
-                    key={sIdx}
-                    variants={itemVariants}
-                    whileHover={{ scale: 1.05, y: -5 }}
-                    className="px-5 py-2.5 bg-white border border-slate-200 rounded-xl shadow-sm text-slate-700 font-medium hover:shadow-md hover:border-indigo-200 hover:text-indigo-600 transition-all cursor-default"
-                  >
-                    {skill}
-                  </motion.div>
-                ))}
-              </motion.div>
-            </motion.div>
-          ))}
-        </div>
+                <div className={`transition-colors duration-500 ${activeCategory === cat.id ? cat.color : "text-slate-400 group-hover:text-slate-600"}`}>
+                  {cat.icon}
+                </div>
+                <span className={`font-heading font-medium text-lg transition-colors duration-500 ${
+                  activeCategory === cat.id ? "text-slate-900" : "text-slate-500 group-hover:text-slate-700"
+                }`}>
+                  {cat.title}
+                </span>
+              </button>
+            ))}
+          </div>
 
+          {/* Items Display */}
+          <div className="w-full lg:w-2/3 bg-white border border-slate-100 rounded-3xl p-10 md:p-16 min-h-[400px]">
+            <AnimatePresence mode="wait">
+              {SKILL_CATEGORIES.map((cat) => (
+                cat.id === activeCategory && (
+                  <motion.div
+                    key={cat.id}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -20 }}
+                    transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+                    className="flex flex-wrap gap-4"
+                  >
+                    {cat.items.map((skill, idx) => (
+                      <motion.div
+                        key={idx}
+                        initial={{ opacity: 0, scale: 0.9 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        transition={{ duration: 0.4, delay: idx * 0.05, ease: [0.16, 1, 0.3, 1] }}
+                        className="px-6 py-3 rounded-full border border-slate-200 text-slate-700 font-sans font-medium text-lg hover:border-orchid hover:text-orchid transition-colors duration-300 cursor-default shadow-sm"
+                      >
+                        {skill}
+                      </motion.div>
+                    ))}
+                  </motion.div>
+                )
+              ))}
+            </AnimatePresence>
+          </div>
+
+        </div>
       </div>
     </section>
   );

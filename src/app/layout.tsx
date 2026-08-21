@@ -1,18 +1,18 @@
 import type { Metadata } from "next";
-import { Inter, Sora } from "next/font/google";
+import { Instrument_Sans, Plus_Jakarta_Sans } from "next/font/google";
 import "./globals.css";
 import SmoothScroll from "@/components/layout/SmoothScroll";
 import Navbar from "@/components/layout/Navbar";
 
-const inter = Inter({
+const instrument = Instrument_Sans({
   subsets: ["latin"],
-  variable: "--font-inter",
+  variable: "--font-instrument",
   display: "swap",
 });
 
-const sora = Sora({
+const jakarta = Plus_Jakarta_Sans({
   subsets: ["latin"],
-  variable: "--font-sora",
+  variable: "--font-jakarta",
   display: "swap",
 });
 
@@ -35,8 +35,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`scroll-smooth ${inter.variable} ${sora.variable}`}>
-      <body className={`${inter.variable} ${sora.variable} antialiased selection:bg-indigo-500/30 selection:text-indigo-900`}>
+    <html lang="en" className={`scroll-smooth ${instrument.variable} ${jakarta.variable}`}>
+      <body className={`${instrument.variable} ${jakarta.variable} antialiased selection:bg-orchid/20 selection:text-orchid`}>
         <SmoothScroll>
           <Navbar />
           {children}

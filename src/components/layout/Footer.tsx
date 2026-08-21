@@ -8,21 +8,21 @@ export default function Footer() {
   };
 
   return (
-    <footer className="w-full py-12 relative z-10 border-t border-slate-200/60 bg-white">
+    <footer className="w-full py-12 relative z-10 bg-ivory border-t border-slate-100">
       <div className="container mx-auto px-6 max-w-6xl flex flex-col md:flex-row items-center justify-between gap-6">
         
         <div className="flex flex-col items-center md:items-start">
-          <a href="#" className="text-xl font-heading font-black tracking-tighter text-slate-900 mb-2">
-            Srimathi<span className="text-indigo-600">.</span>
+          <a href="#" className="text-xl font-heading font-medium tracking-tight text-slate-800 mb-2">
+            Srimathi<span className="text-orchid">.</span>
           </a>
-          <p className="text-sm text-slate-500 font-medium">
-            © {new Date().getFullYear()} Srimathi S. All rights reserved.
+          <p className="text-sm text-slate-400 font-sans tracking-wide">
+            © {new Date().getFullYear()} Designed & Engineered with precision.
           </p>
         </div>
 
         <button
           onClick={scrollToTop}
-          className="group flex items-center justify-center w-12 h-12 rounded-full bg-slate-50 border border-slate-200 text-slate-500 hover:bg-indigo-600 hover:text-white hover:border-indigo-600 transition-all duration-300 shadow-sm"
+          className="group flex items-center justify-center w-12 h-12 rounded-full border border-slate-200 text-slate-400 hover:border-orchid hover:text-orchid transition-all duration-300"
           aria-label="Back to top"
         >
           <ArrowUp size={20} className="group-hover:-translate-y-1 transition-transform duration-300" />

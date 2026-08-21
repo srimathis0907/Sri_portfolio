@@ -53,14 +53,14 @@ export default function Navbar() {
     >
       <div
         className={cn(
-          "w-full max-w-6xl flex items-center justify-between px-8 py-4 transition-all duration-500 rounded-[32px]",
+          "w-full max-w-6xl flex items-center justify-between px-8 py-4 transition-all duration-500 rounded-full",
           isScrolled
-            ? "bg-white/70 backdrop-blur-xl border border-white/60 shadow-[0_8px_30px_rgb(0,0,0,0.04)]"
+            ? "bg-white/80 backdrop-blur-2xl border border-slate-100 shadow-[0_8px_30px_rgb(0,0,0,0.03)]"
             : "bg-transparent border-transparent"
         )}
       >
-        <a href="#" className="text-2xl font-heading font-black tracking-tighter text-slate-900">
-          Srimathi<span className="text-indigo-600">.</span>
+        <a href="#" className="text-xl font-heading font-bold tracking-tight text-slate-800">
+          Srimathi<span className="text-orchid">.</span>
         </a>
 
         {/* Desktop Nav */}
@@ -72,15 +72,15 @@ export default function Navbar() {
                 key={link.name}
                 href={link.href}
                 className={cn(
-                  "relative text-[15px] font-semibold transition-colors duration-300",
-                  isActive ? "text-indigo-600" : "text-slate-600 hover:text-slate-900"
+                  "relative text-[14px] font-medium tracking-wide transition-colors duration-300",
+                  isActive ? "text-slate-900" : "text-slate-500 hover:text-slate-800"
                 )}
               >
                 {link.name}
                 {isActive && (
                   <motion.div
                     layoutId="activeNavIndicator"
-                    className="absolute -bottom-1 left-0 right-0 h-[2px] bg-indigo-600 rounded-full"
+                    className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-1 h-1 bg-orchid rounded-full"
                     transition={{ type: "spring", stiffness: 300, damping: 30 }}
                   />
                 )}
@@ -104,14 +104,14 @@ export default function Navbar() {
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -20 }}
-          className="absolute top-[100px] left-4 right-4 bg-white/95 backdrop-blur-2xl border border-white/60 rounded-3xl p-6 shadow-2xl lg:hidden flex flex-col gap-6"
+          className="absolute top-[100px] left-4 right-4 bg-white/95 backdrop-blur-2xl border border-slate-100 rounded-3xl p-6 shadow-xl lg:hidden flex flex-col gap-6"
         >
           {NAV_LINKS.map((link) => (
             <a
               key={link.name}
               href={link.href}
               onClick={() => setMobileMenuOpen(false)}
-              className="text-xl font-heading font-bold text-slate-800"
+              className="text-lg font-heading font-medium text-slate-800"
             >
               {link.name}
             </a>
