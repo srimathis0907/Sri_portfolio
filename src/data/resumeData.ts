@@ -23,7 +23,7 @@ export const resumeData = {
       institution: "Saveetha Institute of Medical and Technical Sciences (SIMATS Engineering)",
       degree: "B.Tech in Information Technology",
       year: "2022 – 2026",
-      cgpa: "8.26/10"
+      cgpa: "8.25/10"
     }
   ],
   skills: {

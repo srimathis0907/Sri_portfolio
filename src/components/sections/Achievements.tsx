@@ -22,7 +22,7 @@ export default function Achievements() {
     },
     {
       title: "Academic Excellence",
-      subtitle: "CGPA 8.26 / 10",
+      subtitle: "CGPA 8.25 / 10",
       year: "2026"
     }
   ];
